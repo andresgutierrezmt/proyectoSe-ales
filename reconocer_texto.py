@@ -23,9 +23,9 @@ class Hablador():
 
 def verificarIgualdad(audio1, audio2):
     if(audio1 == audio2):
-        return True
+        return "Los dos audios son iguales"
     else:
-        return False
+        return "los dos audios no son iguales"
 
 """ Hablador 1 """
 print("Hablador 1 menciona algo")
@@ -52,7 +52,14 @@ verificador = verificarIgualdad(hablador1.hablador,hablador2.hablador)
 """ Ver lo que dijeron """
 print(f"El hablador 1 dijo: {hablador1.hablador}")
 print(f"El hablador 2 dijo: {hablador2.hablador}")
-if(verificador):
-    print("Los audios son iguales")
-else:
-    print("los audios no son iguales")
+print(verificador)
+
+
+with sr.AudioFile('audio1ejemplo.wav') as source:
+    print("->")
+    audio2 = r.listen(source)
+    try:
+        habladorAudio= r.recognize_google(audio2, language='es-ES')
+        print(f"Felicidades ya tienes un buen paso del proyecto detecte el audio y dice: {habladorAudio}")
+    except:
+        print("Lo siento no pude procesar el audio :(")
